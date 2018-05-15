@@ -1,0 +1,1 @@
+dig slash16.org +short
