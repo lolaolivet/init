@@ -1,1 +1,3 @@
-dig slash16.org +short
+#!/bin/bash
+
+nslookup slash16.org
