@@ -1,3 +1,14 @@
 #!/bin/bash
 
-md5sum -c --status /etc/crontab
+m1=$(md5sum "/etc/crontab")
+
+while true ; do
+	sleep 10
+
+	m2=$(md5sum "/etc/crontab")
+
+	if [ "$m1" != "$m2" ] ; then
+		mail -s "File crontab has changed" root
+		exit 1
+	fi
+done
