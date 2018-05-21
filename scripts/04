@@ -1,14 +1,16 @@
 #!/bin/bash
 
-m1=$(md5sum "/etc/crontab")
+CRON=/etc/crontab
+LOG=/home/vagrant/test_cron
+MD5=$(md5sum $CRON | cut -d " " -f1)
 
-while true ; do
-	sleep 10
-
-	m2=$(md5sum "/etc/crontab")
-
-	if [ "$m1" != "$m2" ] ; then
-		mail -s "File crontab has changed" root
-		exit 1
-	fi
-done
+if [ ! -f $LOG ]; then
+    echo $MD5 > $LOG
+else
+    if [ "$(cat $LOG)" != "$MD5" ]; then
+        echo "new"
+        echo "Message" | mail -s "Crontab has changed" root
+        echo $MD5 > $LOG
+    fi
+fi
+exit

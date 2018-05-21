@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get update -y > /var/log/updat_script.log ; sudo -y apt-get upgrade >> /var/log/update_script.log
+sudo apt-get update -y > /var/log/updat_script.log ; sudo apt-get upgrade -y >> /var/log/update_script.log
 
 #crontab -e
 #0 4 * * 1 /git/scripts/sh 02
