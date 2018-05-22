@@ -14,3 +14,6 @@ else
     fi
 fi
 exit
+
+# crontab -e
+# 00 00 * * * sh /git/scripts/04
